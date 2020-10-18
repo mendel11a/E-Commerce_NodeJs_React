@@ -1,5 +1,5 @@
-import { PRODUCT_LIST_REQUEST, PRODUCT_LIST_FAIL, PRODUCT_LIST_SUCCESS, PRODUCT_DETAILS_REQUEST, PRODUCT_DETAILS_SUCCESS, PRODUCT_DETAILS_FAIL, PRODUCT_SAVE_REQUEST, PRODUCT_SAVE_SUCCESS, PRODUCT_SAVE_FAIL, PRODUCT_DELETE_REQUEST, PRODUCT_DELETE_SUCCESS, PRODUCT_DELETE_FAIL } from "../constants/productConstants"
-import Axios from 'axios'; //library that helps fetch data from webapi
+import { PRODUCT_LIST_REQUEST, PRODUCT_LIST_FAIL, PRODUCT_LIST_SUCCESS, PRODUCT_DETAILS_REQUEST, PRODUCT_DETAILS_SUCCESS, PRODUCT_DETAILS_FAIL, PRODUCT_SAVE_REQUEST, PRODUCT_SAVE_SUCCESS, PRODUCT_SAVE_FAIL, PRODUCT_DELETE_REQUEST, PRODUCT_DELETE_SUCCESS, PRODUCT_DELETE_FAIL, PRODUCT_REVIEW_SAVE_FAIL, PRODUCT_REVIEW_SAVE_SUCCESS, PRODUCT_REVIEW_SAVE_REQUEST } from "../constants/productConstants"
+import Axios from "axios"; //library that helps fetch data from webapi
 
 const listProducts=() => async (dispatch) =>{
     try{
@@ -66,4 +66,28 @@ const detailsProduct=(productId)=>async (dispatch)=>{
       dispatch({ type: PRODUCT_DETAILS_FAIL, payload: error.message });
     }
 };
-export {listProducts,detailsProduct,saveProduct,deleteProduct};
+
+const saveProductReview = (productId, review) => async (dispatch, getState) => {
+  try {
+    const {
+      userSignin: {
+        userInfo: { token },
+      },
+    } = getState();
+    dispatch({ type: PRODUCT_REVIEW_SAVE_REQUEST, payload: review });
+    const { data } = await Axios.post(
+      `/api/products/${productId}/reviews`,
+      review,
+      {
+        headers: {
+          Authorization: 'Bearer ' + token,
+        },
+      }
+    );
+    dispatch({ type: PRODUCT_REVIEW_SAVE_SUCCESS, payload: data });
+  } catch (error) {
+    // report error
+    dispatch({ type: PRODUCT_REVIEW_SAVE_FAIL, payload: error.message });
+  }
+};
+export {listProducts,detailsProduct,saveProduct,deleteProduct,saveProductReview};

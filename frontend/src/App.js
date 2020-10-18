@@ -11,6 +11,9 @@ import RegisterScreen from './screens/RegisterScreen';
 import ShippingScreen from './screens/ShippingScreen';
 import PaymentScreen from './screens/PaymentScreen';
 import PlaceOrderScreen from './screens/PlaceOrderScreen';
+import ProfileScreen from './screens/ProfileScreen';
+import OrdersScreen from './screens/OrdersScreen';
+import OrderScreen from './screens/OrderScreen';
 
 
 function App() {
@@ -34,32 +37,49 @@ function App() {
                       <Link to="/">Amazona</Link>
                   </div>
                   <div className="header-links">
-                      <a href="cart.html">Cart</a>
                       {
-                        userInfo ? <Link to="/profile">{userInfo.name}</Link>:
-                        <Link to="/signin">Sign In</Link>
+                        userInfo ? (<Link to="/cart/:id?">Cart</Link>):
+                        (<Link to="/signin">Cart</Link>)
                       }
+                      {
+                        userInfo ? (<Link to="/profile">{userInfo.name}</Link>):
+                        (<Link to="/signin">Sign In</Link>)
+                      }
+                      {userInfo && userInfo.isAdmin && (
+                        <div className="dropdown">
+                          <a href="#">Admin</a>
+                          <ul className="dropdown-content">
+                            <li>
+                              <Link to="/orders">Orders</Link>
+                              <Link to="/products">Products</Link>
+                            </li>
+                          </ul>
+                        </div>
+                      )}
                   </div>
               </header>
               <aside className="sidebar">
                   <h3>Shopping Categories</h3>
                   <button className="sidebar-close-button" onClick={closeMenu}>x</button>
-                  <ul>
-                      <li>
-                          <a href="index.html">Pants</a>
-                      </li>
-                      <li>
-                          <a href="index.html">Shirts</a>
-                      </li>
+                  <ul className="categories">
+                    <li>
+                      <Link to="/category/Pants">Pants</Link>
+                    </li>
+                    <li>
+                      <Link to="/category/Shirts">Shirts</Link>
+                    </li>
                   </ul>
               </aside>
               <main className="main">
                   <div className="content">
+                    <Route path="/orders" component={OrdersScreen} />
+                    <Route path="/order/:id" component={OrderScreen} />
+                    <Route path="/profile" component={ProfileScreen} />
                     <Route path="/products" component={ProductsScreen} />
                     <Route path="/payment" component={PaymentScreen}/>        
                     <Route path="/placeorder" component={PlaceOrderScreen}/>        
                     <Route path="/shipping" component={ShippingScreen}/>        
-                    <Route path="/products" component={ProductsScreen}/>        
+                    <Route path="/category/:id" component={HomeScreen} />
                     <Route path="/register" component={RegisterScreen}/>        
                     <Route path="/signin" component={SigninScreen}/>        
                     <Route path="/product/:id" component={ProductScreen}/>        

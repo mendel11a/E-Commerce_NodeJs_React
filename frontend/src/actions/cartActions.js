@@ -5,7 +5,7 @@ import { CART_ADD_ITEM, CART_REMOVE_ITEM, CART_SAVE_SHIPPING, CART_SAVE_PAYMENT 
 const addToCart = (productId, qty) => async (dispatch, getState) => {
     try {
       const { data } = await Axios.get("/api/products/" + productId);
-      dispatch({
+      dispatch({ // add the product to the cart
         type: CART_ADD_ITEM, payload: {
           product: data._id,
           name: data.name,
@@ -32,4 +32,4 @@ const saveShipping = (data) => (dispatch) => {
 const savePayment = (data) => (dispatch) => {
   dispatch({ type: CART_SAVE_PAYMENT, payload: data });
 }
-export {addToCart,removeFromCart,saveShipping,savePayment}
+export {addToCart,removeFromCart,saveShipping,savePayment};
