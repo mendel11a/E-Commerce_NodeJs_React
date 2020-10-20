@@ -118,10 +118,10 @@ function OrderScreen(props) {
               <div>Tax</div>
               <div>${order.taxPrice}</div>
             </li>
-            <li>
-              <div>Order Total</div>
-              <div>${order.totalPrice}</div>
-            </li>
+            <li className="total">
+              <div >Order Total</div>
+              <div>${order.totalPrice}</div> 
+          </li>
           </ul>
         </div>
       </div>

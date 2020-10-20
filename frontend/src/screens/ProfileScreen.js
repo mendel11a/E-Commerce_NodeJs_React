@@ -84,6 +84,7 @@ function ProfileScreen(props) {
       </div>
     </div>
     <div className="profile-orders content-margined">
+      <h2>Your Orders</h2>
       {
         loadingOrders ? <div>Loading...</div> :
           errorOrders ? <div>{errorOrders} </div> :
@@ -101,7 +102,7 @@ function ProfileScreen(props) {
                 {orders.map(order => <tr key={order._id}>
                   <td>{order._id}</td>
                   <td>{order.createdAt}</td>
-                  <td>{order.totalPrice}</td>
+                  <td>{order.totalPrice}$</td>
                   <td>{order.isPaid}</td>
                   <td>
                     <Link to={"/order/" + order._id}>DETAILS</Link>

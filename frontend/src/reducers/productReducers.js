@@ -15,7 +15,7 @@ function productListReducer(state = { products: [] }, action) {
 function productDetailsReducer(state = { product: {} }, action) {
   switch (action.type) {
     case PRODUCT_DETAILS_REQUEST: // send a request to the server to get list of products
-      return { loading: true, products: [] }; // show a loading box
+      return { loading: true}; // show a loading box
     case PRODUCT_DETAILS_SUCCESS: //get the data form the server
       return { loading: false, product: action.payload };
     case PRODUCT_DETAILS_FAIL: // if there is an error
@@ -39,7 +39,7 @@ function productDeleteReducer(state = { product: {} }, action) {
 function productSaveReducer(state = { product: {} }, action) {
   switch (action.type) {
     case PRODUCT_SAVE_REQUEST: // send a request to the server to get list of products
-      return { loading: true, products: []}; // show a loading box
+      return { loading: true}; // show a loading box
     case PRODUCT_SAVE_SUCCESS: //get the data form the server
       return { loading: false,success:true, product: action.payload };
     case PRODUCT_SAVE_FAIL: // if there is an error

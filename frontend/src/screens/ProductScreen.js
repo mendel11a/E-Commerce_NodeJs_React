@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { detailsProduct } from '../actions/productActions';
+import Rating from '../components/Rating';
 
 
 function ProductScreen(props) {
@@ -38,14 +39,19 @@ function ProductScreen(props) {
                                     <h4>{product.name}</h4>
                                 </li>
                                 <li>
-                                    {product.rating} Stars ({product.numReviews} Reviews)
-                    </li>
+                                    <a href="#reviews">
+                                        <Rating
+                                        value={product.rating}
+                                        text={product.numReviews + ' reviews'}
+                                        />
+                                    </a>
+                                </li>
                                 <li>
                                     Price :<b> ${product.price}</b>
                                 </li>
                                 <li>
                                     Description:
-                        <div>
+                                    <div>
                                         {product.description}
                                     </div>
                                 </li>

@@ -24,13 +24,13 @@ function ProductsScreen(props) {
     const dispatch = useDispatch();
     
     useEffect(() => {
-        if(successSave){//each time we save the data we want the model to close
-          setModalVisible(false);
-        };
-        dispatch(listProducts());//refresh the data
-        return () => {
+      if(successSave){//each time we save the data we want the model to close
+        setModalVisible(false);
+      };
+      dispatch(listProducts());//refresh the data
+      return () => {
             //
-        };
+      };
     }, [successSave,successDelete]);
 
     const openModal=(product) =>{

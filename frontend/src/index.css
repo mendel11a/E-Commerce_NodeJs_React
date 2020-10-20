@@ -110,6 +110,33 @@ a:hover {
 .product-rating {
   margin-bottom: 1rem;
 }
+/* Reviews */
+ul.review {
+  list-style-type: none;
+  padding: 0;
+}
+.review li {
+  margin: 1rem;
+  margin-bottom: 2rem;
+}
+.review li > div {
+  margin: 0.5rem;
+}
+
+/* Rating */
+.rating span {
+  color: #ffb901;
+  font-size: 1.8rem;
+  margin: 0.1rem;
+}
+.rating span:last-child {
+  color: #444444;
+  font-size: 1.4rem;
+}
+a > .rating > span:last-child {
+  color: #0000ff;
+}
+
 
 /* Sidebar */
 .brand button {
@@ -179,6 +206,9 @@ a:hover {
 .details-info li ,.details-action li {
   margin-bottom: 1rem;
 }
+.details-info b{
+  color: #c04000;
+}
 .back-to-result{
   padding: 1rem;
 }
@@ -188,6 +218,7 @@ a:hover {
   background-color: #f8f8f8;
   padding: 1rem;
 }
+
 .details-action ul li:last-child{
   display: flex;
   flex-direction: column;
@@ -378,11 +409,77 @@ tbody > tr:nth-child(odd) {
   justify-content: space-between;
   margin-bottom: 1rem;
 }
-.placeorder-action > ul > li:last-child {
+.placeorder-action .total {
   font-size: 2rem;
   font-weight: bold;
   color: #c04000;
 }
 .placeorder-actions-payment > div {
   width: 100%;
+}
+
+/* Profile */
+
+.profile {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.profile-info {
+  flex: 1 1 30rem;
+}
+.profile-orders {
+  flex: 3 1 60rem;
+}
+
+/* admin */
+.dropdown {
+  display: inline-block;
+  position: relative;
+}
+.dropdown-content {
+  position: absolute;
+  display: none;
+  right: 0;
+  padding: 1rem;
+  list-style-type: none;
+  z-index: 1;
+  background-color: #203040;
+  margin: 0;
+  margin-top: 0.4rem;
+}
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+/* filter */
+
+.filter {
+  display: flex;
+  list-style-type: none;
+  padding: 0;
+  margin: 1rem auto;
+  max-width: 45rem;
+  justify-content: space-between;
+  align-items: center;
+}
+.filter input,
+.filter button,
+.filter select {
+  padding: 1rem;
+  border-radius: 0.5rem;
+  border: 0.1rem #c0c0c0 solid;
+  font-size: 1.6rem;
+}
+.categories {
+  padding: 0;
+  list-style-type: none;
+}
+.categories a {
+  display: flex;
+  padding: 1rem;
+}
+
+.categories a:hover {
+  background-color: #c0c0c0;
 }

@@ -9,7 +9,7 @@ function PlaceOrderScreen(props) {
   const { cartItems,shipping,payment} = cart;
   
   const orderCreate = useSelector(state => state.orderCreate);
-  const { loading, success,  order } = orderCreate;
+  const { loading, success,error,  order } = orderCreate;
   
   if (!shipping.address) { // if address is not define
     props.history.push("/shipping");
@@ -97,9 +97,6 @@ function PlaceOrderScreen(props) {
       <div className="placeorder-action">
         <ul>
           <li>
-            <button className="button primary full-width" onClick={placeOrderHandler} >Place Order</button>
-          </li>
-          <li>
             <h3>Order Summary</h3>
           </li>
           <li>
@@ -114,9 +111,12 @@ function PlaceOrderScreen(props) {
             <div>Tax</div>
             <div>${taxPrice}</div>
           </li>
+          <li className="total">
+            <div >Order Total</div>
+            <div>${totalPrice}</div> 
+          </li>
           <li>
-            <div>Order Total</div>
-            <div>${totalPrice}</div>
+            <button className="button primary full-width" onClick={placeOrderHandler} >Place Order</button>
           </li>
         </ul>
       </div>

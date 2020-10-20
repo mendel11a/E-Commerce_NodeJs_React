@@ -6,6 +6,8 @@ import mongoose from 'mongoose';
 import bodyParser from 'body-parser'
 import userRoute from './routes/userRoute';
 import productRoute from './routes/productRoute';
+import orderRoute from './routes/orderRoute';
+
 
 
 dotenv.config();
@@ -24,18 +26,10 @@ const app=express();
 app.use(bodyParser.json()); // make it able to read data from the server
 app.use('/api/users', userRoute);
 app.use('/api/products', productRoute);
-// app.get("/api/products/:id",(req,res)=>{
-//     const productId=req.params.id;
-//     const product=data.products.find(x=>x._id ===productId); // getting the product with the same id
-//     if(product) // if the product exists
-//         res.send(product);
-//     else //if the product doesn't exists
-//         res.status(404).send({msg: "Product Not Found."})
-// });
-
-// app.get("/api/products",(req,res)=>{
-//     res.send(data.products);
-// });
+app.use('/api/orders', orderRoute);
+app.get('/api/config/paypal', (req, res) => {
+  res.send(config.PAYPAL_CLIENT_ID);
+});
 
 app.listen(5000, () => {
     console.log('Server started at http://localhost:5000');
