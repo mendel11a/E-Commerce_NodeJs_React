@@ -19,7 +19,7 @@ function ProfileScreen(props) {
   }
   const submitHandler = (e) => {
     e.preventDefault();
-    dispatch(update({ userId: userInfo._id, email, name, password }))
+    dispatch(update({ userId: userInfo._id, name,email,password }));
   }
   const userUpdate = useSelector(state => state.userUpdate);
   const { loading, success, error } = userUpdate;
@@ -55,14 +55,14 @@ function ProfileScreen(props) {
             <li>
               <label htmlFor="name">
                 Name
-          </label>
+               </label>
               <input value={name} type="name" name="name" id="name" onChange={(e) => setName(e.target.value)}>
               </input>
             </li>
             <li>
               <label htmlFor="email">
                 Email
-          </label>
+              </label>
               <input value={email} type="email" name="email" id="email" onChange={(e) => setEmail(e.target.value)}>
               </input>
             </li>
@@ -71,9 +71,8 @@ function ProfileScreen(props) {
               <input value={password} type="password" id="password" name="password" onChange={(e) => setPassword(e.target.value)}>
               </input>
             </li>
-
             <li>
-              <button type="submit" className="button primary">Update</button>
+              <button type="submit" className="button primary">Update Profile</button>
             </li>
             <li>
               <button type="button" onClick={handleLogout} className="button secondary full-width">Logout</button>
